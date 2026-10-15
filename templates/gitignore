@@ -1,0 +1,22 @@
+# Secrets
+.env
+
+# Obsidian per-device state — causes merge conflicts, useless in history
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+.trash/
+
+# Plugin caches (rebuilt automatically)
+.obsidian/copilot-index-*.json
+.obsidian/plugins/make-md/data.json
+.makemd/
+*.mdb
+
+# Sync artifacts
+.sync.log
+.sync.lock
+
+# OS junk
+.DS_Store
+Thumbs.db

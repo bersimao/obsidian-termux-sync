@@ -1,0 +1,7 @@
+# Sync logs produced by the scripts
+sync-logs/
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
