@@ -2,13 +2,31 @@
 
 | Script | Purpose |
 | --- | --- |
+| `setup.sh` | Guided one-shot setup — does everything below for you |
 | `sync-vault.sh` | Sync a single vault |
 | `sync-all-vaults.sh` | Sync several vaults in one run |
 | `view-sync-log.sh` | Browse the stored sync logs |
 
-Edit the vault path(s) at the top of whichever sync script you use — the block marked `EDIT THIS`.
+## Guided setup
 
-## Install
+```bash
+bash scripts/setup.sh
+```
+
+Asks for your vault name and repository URL, then works through the whole guide: packages, storage permission, GitHub sign-in, cloning with `--separate-git-dir`, all the Git config, LFS and hooks, `.gitattributes`, `.gitignore`, the sync scripts, and the widget shortcuts.
+
+It explains each setting as it applies it, so you can follow what is happening rather than just watching it scroll.
+
+**Safe to re-run.** Every step checks whether it is already done and skips if so — useful if a step fails partway, or when adding a second vault later. Files you already have (`.gitattributes`, a customised sync script) are left alone. Nothing is deleted without an explicit y/n.
+
+Two places it pauses for a decision rather than guessing:
+
+- **Leftovers from an interrupted clone** — Git refuses to clone into a non-empty directory, so it offers to remove them
+- **Community plugins already tracked** — untracking them is right for most setups, but other devices lose their plugins on the next pull, so it asks first
+
+## Manual install
+
+If you would rather do it by hand, edit the vault path(s) at the top of whichever sync script you use — the block marked `EDIT THIS` — then:
 
 ```bash
 mkdir -p ~/scripts

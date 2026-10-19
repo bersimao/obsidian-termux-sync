@@ -2,10 +2,22 @@
 
 Sync an Obsidian vault across Android, desktop and any number of devices using Git and Git LFS — no subscription, no flaky mobile plugin, and no extra APK for the sync button.
 
+## Quick start
+
+```bash
+pkg install git
+git clone https://github.com/bersimao/obsidian-termux-sync.git ~/obsidian-termux-sync
+bash ~/obsidian-termux-sync/scripts/setup.sh
+```
+
+[`setup.sh`](scripts/setup.sh) walks through everything below interactively — packages, storage permission, GitHub sign-in, cloning, Git config, LFS, templates, sync scripts and widget shortcuts — explaining each setting as it applies it. It is safe to re-run: finished steps are detected and skipped, and nothing is deleted without asking.
+
+Prefer to understand each piece first? The full guide follows.
+
 **What's in here**
 
 - A full step-by-step setup guide (below)
-- [`scripts/`](scripts/) — ready-to-use sync and log-viewer scripts
+- [`scripts/`](scripts/) — the guided installer, plus sync and log-viewer scripts
 - [`templates/`](templates/) — `.gitattributes` and `.gitignore` tuned for Obsidian vaults
 
 **Why another guide?** This started as a walkthrough of [Askar Zhakenov's article](https://medium.com/@askar.zhakenov/obsidian-git-sync-on-android-with-termux-and-lfs-c5bb05e0f1cc), which covers the key insight — keeping `.git` off Android's FUSE filesystem. Working through it on a real device surfaced a handful of things worth fixing:
