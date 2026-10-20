@@ -10,9 +10,25 @@ git clone https://github.com/bersimao/obsidian-termux-sync.git ~/obsidian-termux
 bash ~/obsidian-termux-sync/scripts/setup.sh
 ```
 
-[`setup.sh`](scripts/setup.sh) walks through everything below interactively — packages, storage permission, GitHub sign-in, cloning, Git config, LFS, templates, sync scripts and widget shortcuts — explaining each setting as it applies it. It is safe to re-run: finished steps are detected and skipped, and nothing is deleted without asking.
+[`setup.sh`](scripts/setup.sh) asks for your vault name and repository URL, then performs the steps below, explaining each setting as it applies it.
 
-Prefer to understand each piece first? The full guide follows.
+| `setup.sh` does | Guide section |
+| --- | --- |
+| Installs `git git-lfs openssh gh jq curl` | [Step 1](#step-1-install-packages-in-termux) |
+| Requests storage permission | [Step 2](#step-2-grant-storage-access) |
+| Signs in to GitHub | [Step 3](#step-3-authenticate-with-github) |
+| Clones with `--separate-git-dir`, or initializes an existing vault | [Step 4](#step-4-clone-with-separate-git-directory) |
+| Applies the global and Android-specific Git config | [Step 5](#step-5-configure-git) |
+| Sets up LFS, `core.hooksPath`, and `.gitattributes` | [Step 6](#step-6-set-up-git-lfs) |
+| Writes `.gitignore`, offers to untrack plugins | [Step 7](#step-7-configure-gitignore) |
+| Installs the sync and log-viewer scripts | [Step 8](#step-8-the-sync-script) |
+| Links the widget shortcuts | [Step 9](#step-9-termux-widget-shortcut) |
+
+**Safe to re-run.** Every step detects prior completion and skips it, so an interrupted run can simply be restarted. Files you already have — a customised `.gitattributes`, your own sync script — are left alone, and nothing is deleted without an explicit y/n.
+
+It pauses for a decision in two places rather than guessing: when leftovers from an interrupted clone must be removed, and when community plugins are already tracked by Git (untracking them means other devices lose their plugins on the next pull).
+
+The guide below is the long form of all of this — read it to understand what the script changes and why, or to do any step by hand.
 
 **What's in here**
 
